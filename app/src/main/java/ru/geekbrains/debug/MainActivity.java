@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Integer arg1;
-    private Integer arg2;
+    private int arg1;
+    private int arg2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,20 +23,17 @@ public class MainActivity extends AppCompatActivity {
         final EditText editArg2 = findViewById(R.id.editText2);
         final TextView textResult = findViewById(R.id.textView);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    arg1 = Integer.valueOf(editArg1.getText().toString());
-                    arg2 = Integer.valueOf(editArg2.getText().toString());
-                    if (arg1.equals(arg2)) {
-                        textResult.setText("Равно!");
-                    } else {
-                        textResult.setText("Не равно!");
-                    }
-                } catch (NumberFormatException e) {
-                    textResult.setText("Введите число!");
+        button.setOnClickListener(view -> {
+            try {
+                arg1 = Integer.parseInt(editArg1.getText().toString());
+                arg2 = Integer.parseInt(editArg2.getText().toString());
+                if (arg1 == arg2) {
+                    textResult.setText("Равно!");
+                } else {
+                    textResult.setText("Не равно!");
                 }
+            } catch (NumberFormatException e) {
+                textResult.setText("Введите число!");
             }
         });
     }
